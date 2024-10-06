@@ -34,5 +34,10 @@ namespace SistemaGimnasio
         {
             return _dataAccessLayer.GetClases();
         }
+
+        public List<Clase> SearchClases(string searchTerm)
+        {
+            return _dataAccessLayer.SearchClases(searchTerm);
+        }
     }
 }

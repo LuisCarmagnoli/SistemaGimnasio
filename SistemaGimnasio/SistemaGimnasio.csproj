@@ -50,8 +50,6 @@
     <Compile Include="BusinessLogicLayer.cs" />
     <Compile Include="Clase.cs" />
     <Compile Include="DataAccessLayer.cs" />
-    <Compile Include="Model\ClaseModel.cs" />
-    <Compile Include="Model\IClaseRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ClaseDetailsView.cs">
@@ -66,7 +64,6 @@
     <Compile Include="MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\IClaseView.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -97,7 +94,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Presenter\" />
+    <Folder Include="Models\" />
+    <Folder Include="Presenters\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

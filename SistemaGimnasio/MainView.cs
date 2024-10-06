@@ -80,6 +80,25 @@ namespace SistemaGimnasio.View
             }
         }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string searchTerm = txtBuscar.Text.Trim();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                // Llamar a la capa de negocio para buscar las clases
+                List<Clase> resultados = _businessLogicLayer.SearchClases(searchTerm);
+
+                // Actualizar el DataGridView con los resultados
+                gridClases.DataSource = resultados;
+            }
+            else
+            {
+                // Si el campo de búsqueda está vacío, volver a cargar todas las clases
+                PopulateClases();
+            }
+        }
+
         private void gridClases_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Permitir seleccionar la fila completa al hacer clic en cualquier celda
@@ -102,16 +121,7 @@ namespace SistemaGimnasio.View
             List<Clase> clases = _businessLogicLayer.GetClases();
             gridClases.DataSource = clases;
         }
+
         #endregion
-
-
-
-
-
-        
-
-        
-
-        
     }
 }

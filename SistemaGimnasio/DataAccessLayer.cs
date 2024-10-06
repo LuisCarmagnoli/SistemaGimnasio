@@ -102,6 +102,49 @@ namespace SistemaGimnasio
             }
         }
 
+        public List<Clase> SearchClases(string searchTerm)
+        {
+            List<Clase> clases = new List<Clase>();
+            try
+            {
+                connection.Open();
+                string query = @"
+            SELECT ID_Clase, Nombre_Clase, Instructor, Horario, Capacidad, Espacios_Disponibles
+            FROM Clases
+            WHERE Nombre_Clase LIKE @SearchTerm 
+               OR Instructor LIKE @SearchTerm 
+               OR Horario LIKE @SearchTerm";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    clases.Add(new Clase
+                    {
+                        IdClase = int.Parse(reader["ID_Clase"].ToString()),
+                        NombreClase = reader["Nombre_Clase"].ToString(),
+                        NombreInstructor = reader["Instructor"].ToString(),
+                        Horario = reader["Horario"].ToString(),
+                        Capacidad = int.Parse(reader["Capacidad"].ToString()),
+                        EspaciosDisponibles = int.Parse(reader["Espacios_Disponibles"].ToString())
+                    });
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return clases;
+        }
+
         public List<Clase> GetClases()
         {
             List<Clase> clases = new List<Clase>();
