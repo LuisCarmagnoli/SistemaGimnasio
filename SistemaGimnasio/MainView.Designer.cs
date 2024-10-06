@@ -107,6 +107,7 @@
             this.btnBorrar.TabIndex = 5;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // btnEditar
             // 
@@ -117,6 +118,7 @@
             this.btnEditar.TabIndex = 4;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnInsertar
             // 
@@ -162,6 +164,7 @@
             this.gridClases.Name = "gridClases";
             this.gridClases.Size = new System.Drawing.Size(662, 319);
             this.gridClases.TabIndex = 0;
+            this.gridClases.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridClases_CellClick);
             // 
             // idClaseDataGridViewTextBoxColumn
             // 

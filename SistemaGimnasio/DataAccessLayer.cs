@@ -46,6 +46,62 @@ namespace SistemaGimnasio
             }
         }
 
+        public void UpdateClase(Clase clase)
+        {
+            try
+            {
+                connection.Open();
+                string query = @"
+                        UPDATE Clases 
+                        SET Nombre_Clase = @NombreClase, 
+                            Instructor = @NombreInstructor, 
+                            Horario = @Horario, 
+                            Capacidad = @Capacidad, 
+                            Espacios_Disponibles = @EspaciosDisponibles 
+                        WHERE ID_Clase = @IdClase";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@IdClase", clase.IdClase);
+                command.Parameters.AddWithValue("@NombreClase", clase.NombreClase);
+                command.Parameters.AddWithValue("@NombreInstructor", clase.NombreInstructor);
+                command.Parameters.AddWithValue("@Horario", clase.Horario);
+                command.Parameters.AddWithValue("@Capacidad", clase.Capacidad);
+                command.Parameters.AddWithValue("@EspaciosDisponibles", clase.EspaciosDisponibles);
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void DeleteClase(int idClase)
+        {
+            try
+            {
+                connection.Open();
+                string query = "DELETE FROM Clases WHERE ID_Clase = @IdClase";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@IdClase", idClase);
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
         public List<Clase> GetClases()
         {
             List<Clase> clases = new List<Clase>();

@@ -20,9 +20,14 @@ namespace SistemaGimnasio
         {
             if (clase.IdClase == 0)
                 _dataAccessLayer.InsertClase(clase);
-            //else
-            //_dataAccessLayer.UpdateClase
+            else
+                _dataAccessLayer.UpdateClase(clase); // Agregar llamada a método de actualización
             return clase;
+        }
+
+        public void BorrarClase(int idClase)
+        {
+            _dataAccessLayer.DeleteClase(idClase);
         }
 
         public List<Clase> GetClases()
